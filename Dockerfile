@@ -1,7 +1,7 @@
 FROM kalabox/drush:stable
 ADD drushrc.php /root/.drush/drushrc.php
 RUN ln -s /usr/local/src/drush7/drush /usr/bin/drush
-RUN apt-get update && apt-get install openssh-server mysql-client php5-mysql -y
+RUN apt-get update && apt-get install openssh-server mysql-client php5-mysql php5-gd -y
 RUN drush dl registry_rebuild
 
 RUN mkdir /var/run/sshd
