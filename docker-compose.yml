@@ -1,0 +1,12 @@
+drush:
+    image: terra/drush
+    tty: true
+    hostname: drush.devshop.site
+    stdin_open: true
+    ports:
+        - '4001:22'
+    volumes:
+        - '/home/jon/Projects/opendevshop.com:/var/www/html'
+        - '/var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock'
+    environment:
+        AUTHORIZED_KEYS: ""
