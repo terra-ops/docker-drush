@@ -8,6 +8,7 @@ RUN drush cc drush
 
 RUN mkdir /var/run/sshd
 RUN mkdir /home/drush/.ssh
+RUN mkdir /home/drush/.drush
 RUN chown drush:drush /home/drush/.ssh
 RUN chown drush:drush /home/drush/.drush -R
 
