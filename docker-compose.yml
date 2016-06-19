@@ -6,7 +6,7 @@ drush:
     ports:
         - '4001:22'
     volumes:
-        - '/home/jon/Projects/opendevshop.com:/var/www/html'
+        - '/path/to/drupal:/var/www/html'
         - '/var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock'
     environment:
         AUTHORIZED_KEYS: ""
