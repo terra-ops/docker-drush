@@ -1,4 +1,4 @@
-FROM drush/drush:8
+FROM drush/drush:8-php5
 
 RUN adduser drush --gecos "" --home /home/drush  --disabled-password
 RUN ln -s /usr/local/src/drush7/drush /usr/bin/drush
