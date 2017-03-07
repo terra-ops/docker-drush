@@ -13,13 +13,14 @@ if [ ! `id -u terra` ]; then
     mkdir /home/terra/.ssh
     mkdir /home/terra/.drush
 
-    chown terra:terra /home/terra/.ssh
-    chown terra:terra /home/terra/.drush
+    echo $AUTHORIZED_KEYS > /home/terra/.ssh/authorized_keys
+
+    chown terra:terra /home/terra/.ssh -R
+    chown terra:terra /home/terra/.drush -R
 
     ln -s /var/www/html /home/terra/html
     ln -s /app /home/terra/app
 fi
 
-echo $AUTHORIZED_KEYS > /home/terra/.ssh/authorized_keys
 
 /usr/sbin/sshd -D
