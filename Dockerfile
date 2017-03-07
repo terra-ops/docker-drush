@@ -1,16 +1,19 @@
-FROM drush/drush:8-php5
+FROM drush/drush:8
 
-RUN adduser drush --gecos "" --home /home/drush  --disabled-password
+ENV HOST_UID 1000
+ENV HOST_GID 1000
+
+#RUN adduser drush --gecos "" --home /home/drush  --disabled-password
 RUN ln -s /usr/local/src/drush7/drush /usr/bin/drush
 RUN apt-get update && apt-get install openssh-server mysql-client php5-mysql -y
 RUN drush dl registry_rebuild-7.x
 RUN drush cc drush
 
 RUN mkdir /var/run/sshd
-RUN mkdir /home/drush/.ssh
-RUN mkdir /home/drush/.drush
-RUN chown drush:drush /home/drush/.ssh
-RUN chown drush:drush /home/drush/.drush -R
+#RUN mkdir /home/drush/.ssh
+#RUN mkdir /home/drush/.drush
+#RUN chown drush:drush /home/drush/.ssh
+#RUN chown drush:drush /home/drush/.drush -R
 
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
@@ -22,5 +25,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
 
-ENTRYPOINT echo $AUTHORIZED_KEYS > /home/drush/.ssh/authorized_keys && /usr/sbin/sshd -D
+ENTRYPOINT ["docker-entrypoint.sh"]
 
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
