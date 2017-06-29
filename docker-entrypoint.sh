@@ -18,7 +18,7 @@ if [ ! `id -u drush` ]; then
     chown drush:drush /home/drush/.ssh -R
     chown drush:drush /home/drush/.drush -R
 
-    ln -s /var/www/html /home/terra/html
+    ln -s /var/www/html /home/drush/html
     ln -s /app /home/drush/app
 fi
 
