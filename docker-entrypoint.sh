@@ -1,25 +1,25 @@
 #!/bin/sh
 set -ex
 
-if [ ! `id -u terra` ]; then
+if [ ! `id -u drush` ]; then
     # Create app user
-    addgroup --gid $HOST_GID terra
+    addgroup --gid $HOST_GID drush
 
     echo $HOST_UID
     echo $HOST_GID
 
-    adduser --uid $HOST_UID --gid $HOST_GID --system  --disabled-password --home /home/terra terra
+    adduser --uid $HOST_UID --gid $HOST_GID --system  --disabled-password --home /home/drush drush
 
-    mkdir /home/terra/.ssh
-    mkdir /home/terra/.drush
+    mkdir /home/drush/.ssh
+    mkdir /home/drush/.drush
 
-    echo $AUTHORIZED_KEYS > /home/terra/.ssh/authorized_keys
+    echo $AUTHORIZED_KEYS > /home/drush/.ssh/authorized_keys
 
-    chown terra:terra /home/terra/.ssh -R
-    chown terra:terra /home/terra/.drush -R
+    chown drush:drush /home/drush/.ssh -R
+    chown drush:drush /home/drush/.drush -R
 
     ln -s /var/www/html /home/terra/html
-    ln -s /app /home/terra/app
+    ln -s /app /home/drush/app
 fi
 
 
