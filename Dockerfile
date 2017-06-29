@@ -26,6 +26,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 
 ENTRYPOINT ["docker-entrypoint.sh"]
+WORKDIR /source
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
